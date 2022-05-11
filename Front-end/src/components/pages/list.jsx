@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import { Grid, Segment } from 'semantic-ui-react';
 import {User} from '../user/containers/User';
@@ -7,23 +7,31 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 
 
-export class ListCards extends Component {
-    state = {
-        cards: []
-    }
+export const ListCards=(props)=>{
+    const [currentUser, setCurrentUser] = useState({
+        id: 12,
+        username: "John",
+        lastname: "Doe",
+        login: "jDoe",
+        pwd: "jdoepwd",
+        money: 500,
+        title: "Buy"
+    });
 
-    componentDidMount() {
-        axios.get('http://localhost:8080/cards'
-        ).then((result) => {
-            setTimeout(()=>{
-                const cards = result.data;
-                this.setState( {cards})
-                console.log(result)
-            },1500)
-        })
-    }
+    const [cards,setCards] = useState([]);
 
-    render() {
+    const fetchAllCards = async () => {
+        const { data } = await axios.get('http://localhost:8080/cards');
+        const cardlist = data;
+        setCards((cardlist))
+        console.log(cards);
+    };
+
+    useEffect(() => {
+        fetchAllCards();
+    }, []);
+
+
         return (
             <div className="ui grid">
                 <div>
@@ -44,7 +52,7 @@ export class ListCards extends Component {
                         </thead>
                         <tbody id="tableContent">
 
-                        {this.state.cards.map((card) => {
+                        {cards.map((card) => {
                             return(
                                 <tr>
                                     <td>
@@ -77,7 +85,6 @@ export class ListCards extends Component {
             </div>
 
         )
-    }
 
 
 }
