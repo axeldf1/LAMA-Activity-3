@@ -1,9 +1,10 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
 import {ListCards} from "./list";
 import {UserSimpleDisplay} from "../user/components/UserSimpleDisplay";
+import axios from "axios";
 
 export const Buy=(props)=>{
     const [currentUser, setCurrentUser] = useState({
@@ -15,6 +16,18 @@ export const Buy=(props)=>{
         money: 500,
         title: "Buy"
     });
+
+    const fetchCurrentUser = async ()=>{
+        const {data} = await axios.get('http://localhost:8080/users/3')
+        const currentUser = data;
+        setCurrentUser(currentUser)
+        console.log(currentUser);
+    }
+
+    useEffect(() => {
+        fetchCurrentUser();
+
+    }, []);
 
     return (
         <div>

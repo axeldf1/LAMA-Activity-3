@@ -15,8 +15,8 @@ export const Header=(props)=> {
                 <h3 className="ui right floated header">
                     <i className="user circle outline icon"></i>
                     <div className="content">
-                        <span id="userNameId">Jdoe</span>
-                        <div className="sub header"><span>5000</span>$</div>
+                        <span id="userNameId">{props.name}</span>
+                        <div className="sub header"><span>{props.money}</span>$</div>
                     </div>
                 </h3>
 

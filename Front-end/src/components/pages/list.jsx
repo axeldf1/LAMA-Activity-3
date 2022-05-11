@@ -18,17 +18,20 @@ export const ListCards=(props)=>{
         title: "Buy"
     });
 
+
+
     const [cards,setCards] = useState([]);
 
     const fetchAllCards = async () => {
         const { data } = await axios.get('http://localhost:8080/cards');
         const cardlist = data;
-        setCards((cardlist))
+        setCards(cardlist)
         console.log(cards);
     };
 
     useEffect(() => {
         fetchAllCards();
+
     }, []);
 
 
