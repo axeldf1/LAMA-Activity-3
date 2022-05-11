@@ -1,11 +1,12 @@
-package lama.activity-3.Player;
+package lama.activity3.Player;
+
+import lama.activity3.CardDTO.Card;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Player {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -13,8 +14,7 @@ public class Player {
     private String name;
     private String surname;
     private String password;
-    @ManyToMany
-    private List<Card> cardList;
+    private transient List<Card> cardList;
     private int money;
 
     public Player() {
@@ -30,7 +30,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -80,23 +80,19 @@ public class Player {
         this.cardList = cardList;
     }
 
-    public int getMoney()
-    {
+    public int getMoney() {
         return this.money;
     }
 
-    public void setMoney(int money)
-    {
+    public void setMoney(int money) {
         this.money = money;
     }
 
-    public void takeMoney(int amount)
-    {
+    public void takeMoney(int amount) {
         this.money -= amount;
     }
 
-    public void giveMoney(int amount)
-    {
+    public void giveMoney(int amount) {
         this.money += amount;
     }
 }

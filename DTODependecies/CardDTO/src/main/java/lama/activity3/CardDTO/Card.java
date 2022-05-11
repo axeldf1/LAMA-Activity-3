@@ -1,14 +1,7 @@
-package lama.activity-3.Card;
+package lama.activity3.CardDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Card {
 
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private String description;

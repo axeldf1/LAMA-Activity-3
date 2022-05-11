@@ -1,18 +1,22 @@
-package lama.activity-3.DTOs;
+package lama.activity3.PlayerDTO;
+
+import lama.activity3.CardDTO.Card;
+
+import java.util.List;
 
 public class PlayerDTO {
-    @Id
-    @GeneratedValue
+
     private Long id;
-    @Column(unique = true)
     private String name;
     private String surname;
     private String password;
-    @ManyToMany
     private List<Card> cardList;
     private int money;
 
-    public Player(String name, String surname, String password, List<Card> cardList, int money) {
+    public PlayerDTO() {
+    }
+
+    public PlayerDTO(String name, String surname, String password, List<Card> cardList, int money) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -52,8 +56,7 @@ public class PlayerDTO {
         return cardList;
     }
 
-    public int getMoney()
-    {
-        return this.money;
+    public int getMoney() {
+        return money;
     }
 }
