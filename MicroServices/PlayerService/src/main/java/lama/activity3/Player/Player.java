@@ -2,7 +2,10 @@ package lama.activity3.Player;
 
 import lama.activity3.CardDTO.Card;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
