@@ -8,11 +8,11 @@ import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class CardRepository {
-    String cardApiUrl = "localhost:8080/cards";
+    String cardApiUrl = "http://localhost:8085/cards/1";
 
     public Card GetCard(Long cardID) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Card> response = restTemplate.exchange(cardApiUrl + "/" + cardID, HttpMethod.GET, null, Card.class);
+        ResponseEntity<Card> response = restTemplate.exchange(cardApiUrl, HttpMethod.GET, null, Card.class);
         return response.getBody();
     }
 }
