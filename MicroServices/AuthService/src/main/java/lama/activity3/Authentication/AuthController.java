@@ -22,14 +22,14 @@ public class AuthController {
         return "login";
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     String connection(String surname, String password, HttpSession session) {
-        if (userService.CheckCredentials(surname, password)) {
+        if (authService.CheckCredentials(surname, password)) {
             authRepository.save(new AuthUser(session.getId(), userService.FindByName(surname)));
             return "/menu";
         } else
             return "/login";
-    }
+    }*/
 
     @GetMapping("/register")
     String register() {
