@@ -1,6 +1,5 @@
 package lama.activity3.Card;
 
-import lama.activity3.CardDTO.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

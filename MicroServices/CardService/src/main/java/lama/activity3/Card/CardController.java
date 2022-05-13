@@ -1,6 +1,5 @@
 package lama.activity3.Card;
 
-import lama.activity3.CardDTO.Card;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
