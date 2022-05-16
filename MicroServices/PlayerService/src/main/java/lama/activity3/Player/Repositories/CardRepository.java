@@ -1,12 +1,10 @@
-package lama.activity3.Player;
+package lama.activity3.Player.Repositories;
 
 import lama.activity3.CardDTO.Card;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Repository
 public class CardRepository {

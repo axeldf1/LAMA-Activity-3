@@ -1,4 +1,4 @@
-package lama.activity3.Player;
+package lama.activity3.Player.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

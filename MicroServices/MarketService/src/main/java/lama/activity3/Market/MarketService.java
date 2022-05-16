@@ -1,26 +1,31 @@
 package lama.activity3.Market;
 
+import lama.activity3.CardDTO.Card;
+import lama.activity3.Market.Model.Offer;
+import lama.activity3.Market.repositories.CardRepository;
+import lama.activity3.Market.repositories.MarketRepository;
+import lama.activity3.Market.repositories.PlayerRepository;
+import lama.activity3.PlayerDTO.PlayerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MarketService {
-    /*List<Offer> offers;
-
+    List<Offer> offers;
     @Autowired
-    CardService cardService;
-
+    MarketRepository marketRepository;
     @Autowired
-    UserService userService;
-
+    CardRepository cardRepository;
     @Autowired
-    OfferRepository offerRepository;
+    PlayerRepository playerRepository;
 
-    public void SellCard(User user, Card card, int price, int quantity) {
-        Offer offer = new Offer(user, card, price, quantity);
+    public void SellCard(PlayerDTO player, Card card, int price, int quantity) {
+        Offer offer = new Offer(player, card, price, quantity);
         offers.add(offer);
-        user.giveMoney(offer.getPrice() * offer.getQuantity());
-        offerRepository.save(offer);
+        player.giveMoney(offer.getPrice() * offer.getQuantity());
+        marketRepository.save(offer);
     }
 
     public void BuyCard(User user, Offer offer) {
@@ -32,6 +37,6 @@ public class MarketService {
 
         user.takeMoney(offer.getPrice() * offer.getQuantity());
         offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
-        offerRepository.deleteById(offer.getId());
-    }*/
+        marketRepository.deleteById(offer.getId());
+    }
 }

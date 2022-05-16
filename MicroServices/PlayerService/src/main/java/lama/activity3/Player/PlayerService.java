@@ -1,5 +1,7 @@
 package lama.activity3.Player;
 
+import lama.activity3.Player.Repositories.CardRepository;
+import lama.activity3.Player.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
