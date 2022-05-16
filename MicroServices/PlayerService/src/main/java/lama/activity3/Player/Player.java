@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 
 @Entity
 public class Player {
@@ -17,13 +16,13 @@ public class Player {
     private String name;
     private String surname;
     private String password;
-    private transient List<Card> cardList;
+    private transient Card[] cardList;
     private int money;
 
     public Player() {
     }
 
-    public Player(String name, String surname, String password, List<Card> cardList, int money) {
+    public Player(String name, String surname, String password, Card[] cardList, int money) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -75,11 +74,11 @@ public class Player {
         this.password = password;
     }
 
-    public List<Card> getCardList() {
+    public Card[] getCardList() {
         return cardList;
     }
 
-    public void setCardList(List<Card> cardList) {
+    public void setCardList(Card[] cardList) {
         this.cardList = cardList;
     }
 

@@ -1,5 +1,6 @@
 package lama.activity3.Card;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 class CardController {
 
     private final CardRepository repository;
+    @Autowired
+    private CardService service;
 
     CardController(CardRepository repository) {
         this.repository = repository;
@@ -48,5 +51,10 @@ class CardController {
     @DeleteMapping("/cards/{id}")
     void deleteCard(@PathVariable Long id) {
         repository.deleteById(id);
+    }
+
+    @GetMapping("/cards/random/{amount}")
+    List<Card> randomCards(@PathVariable int amount) {
+        return service.GetRandomCards(amount);
     }
 }

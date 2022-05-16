@@ -18,7 +18,7 @@ public class CardService {
     }
 
     public List<Card> GetCards() {
-        return (List<Card>) cardRepository.findAll();
+        return cardRepository.findAll();
     }
 
     public List<Card> GetRandomCards(int amount) {

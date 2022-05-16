@@ -1,6 +1,5 @@
 package lama.activity3.Player;
 
-import lama.activity3.CardDTO.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +12,6 @@ public class PlayerController {
     @Autowired
     private PlayerRepository repository;
 
-    @Autowired
-    private CardRepository cardRepository;
-
     PlayerController(PlayerRepository repository) {
         this.repository = repository;
     }
@@ -25,10 +21,10 @@ public class PlayerController {
         return repository.findAll();
     }
 
-//    @PostMapping("/users")
-//    void newUser(String name, String surname, String password) {
-//        playerService.Register(name, surname, password);
-//    }
+    @PostMapping("/users")
+    void newUser(String name, String surname, String password) {
+        playerService.Register(name, surname, password);
+    }
 
     @GetMapping("/users/{id}")
     Player one(@PathVariable Long id) {
@@ -55,8 +51,4 @@ public class PlayerController {
         repository.deleteById(id);
     }
 
-    @GetMapping("/users/testRepo/{id}")
-        Card test(@PathVariable Long id){
-            return cardRepository.GetCard(id);
-        }
 }

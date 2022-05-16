@@ -15,8 +15,8 @@ class LoadDatabase {
     CommandLineRunner initDatabase(CardRepository cardRepository) {
 
         return args -> {
-            Card card = new Card("String name", "String description", "String imageUrl", "String family", "String affinity", 0, 0, 0, 0);
-            Card card2 = new Card("Axel", "String description", "String imageUrl", "String family", "String affinity", 0, 0, 0, 0);
+            Card card = new Card("carte 1", "description 1", "imageUrl 1", "family 1", "affinity 1", 0, 0, 0, 0);
+            Card card2 = new Card("Axel", "description 2", "imageUrl 2", "family 2", "affinity 2", 0, 0, 0, 0);
             log.info("Preloading " + cardRepository.save(card));
             log.info("Preloading " + cardRepository.save(card2));
         };
