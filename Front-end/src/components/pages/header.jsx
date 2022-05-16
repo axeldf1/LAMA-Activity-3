@@ -1,11 +1,13 @@
 import React, {Component, useState} from "react";
-import {Link} from "react-router-dom";
-import { Grid, Segment } from 'semantic-ui-react';
-import {User} from '../user/containers/User';
-import {UserShortDisplay} from "../user/components/UserShortDisplay";
-
 export const Header=(props)=> {
-    const [header, setCurrentUser] = useState({
+    const [currentUser, setCurrentUser] = useState({
+        id: 12,
+        username: "John",
+        lastname: "Doe",
+        login: "jDoe",
+        pwd: "jdoepwd",
+        money: 500,
+        title: "Buy"
     });
 
 

@@ -18,6 +18,7 @@ function Main(){
             <div>
                 <Routes>
                     <Route exact path="/" element={<Login/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                     <Route exact path="/buy" element={<Buy/>}/>
                     <Route exact path="/sell" element={<Sell/>}/>
                     <Route exact path="/menu" element={<Menu/>}/>

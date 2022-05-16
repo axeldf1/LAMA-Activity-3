@@ -1,9 +1,4 @@
 import React, {Component, useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import { Grid, Segment } from 'semantic-ui-react';
-import {User} from '../user/containers/User';
-import {UserShortDisplay} from "../user/components/UserShortDisplay";
-import {useDispatch} from "react-redux";
 import axios from "axios";
 
 
@@ -18,8 +13,6 @@ export const ListCards=(props)=>{
         title: "Buy"
     });
 
-
-
     const [cards,setCards] = useState([]);
 
     const fetchAllCards = async () => {
@@ -33,7 +26,6 @@ export const ListCards=(props)=>{
         fetchAllCards();
 
     }, []);
-
 
         return (
             <div className="ui grid">
@@ -79,8 +71,6 @@ export const ListCards=(props)=>{
                                 </tr>
                             )})
                         }
-
-
                         </tbody>
                     </table>
                 </div>

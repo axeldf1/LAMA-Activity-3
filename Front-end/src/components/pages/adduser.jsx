@@ -1,8 +1,6 @@
 import React, {Component, useState} from "react";
 import {Link} from "react-router-dom";
 import { Grid, Segment } from 'semantic-ui-react';
-import {User} from '../user/containers/User';
-import {UserShortDisplay} from "../user/components/UserShortDisplay";
 import {UserForm} from "../userform/UserForm";
 
 
