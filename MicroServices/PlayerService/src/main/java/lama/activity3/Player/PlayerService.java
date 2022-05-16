@@ -7,27 +7,25 @@ import org.springframework.stereotype.Service;
 public class PlayerService {
 
     @Autowired
-    private UserRepository userRepository;
-
+    private PlayerRepository playerRepository;
     @Autowired
-    private CardService service;
+    private CardRepository cardRepository;
 
-    public boolean CheckCredentials(String surname, String password){
-        System.out.println(surname + " et " + password);
-        for (User user : userRepository.findAll()) {
-            if (user.getSurname().compareTo(surname) == 0 && user.getPassword().compareTo(password) == 0) {
+    public boolean CheckCredentials(String surname, String password) {
+        for (Player player : playerRepository.findAll()) {
+            if (player.getSurname().compareTo(surname) == 0 && player.getPassword().compareTo(password) == 0) {
                 return true;
             }
         }
         return false;
     }
 
-    public void Register(String name, String surname, String password){
-        User newUser = new User(name, surname, password, service.GetRandomCards(5), 100);
-        userRepository.save(newUser);
+    public void Register(String name, String surname, String password) {
+        Player newUser = new Player(name, surname, password, cardRepository.GetRandomCards(5), 100);
+        playerRepository.save(newUser);
     }
 
-    public Long FindByName(String name){
-        return userRepository.findIdByName(name);
+    public Long FindByName(String name) {
+        return playerRepository.findIdByName(name);
     }
 }
