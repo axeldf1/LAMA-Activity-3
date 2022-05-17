@@ -15,7 +15,7 @@ public class PlayerController {
     private PlayerRepository repository;
 
 //    @Autowired
-//    private CardRepository CardRepository;
+//    private lama.activity3.Player.Repositories.CardRepository CardRepository;
 
     PlayerController(PlayerRepository repository) {
         this.repository = repository;
@@ -26,7 +26,7 @@ public class PlayerController {
         return repository.findAll();
     }
 
-//    TODO : requestBody
+    //    TODO : requestBody
     @PostMapping("/players")
     void newPlayer(String name, String surname, String password) {
         playerService.Register(name, surname, password);
@@ -58,6 +58,8 @@ public class PlayerController {
     }
 
 //    @GetMapping("/test/{amount}")
-//    Card[] test(@PathVariable int amount){return CardRepository.GetRandomCards(amount);}
+//    Card[] test(@PathVariable int amount) {
+//        return CardRepository.GetRandomCards(amount);
+//    }
 
 }

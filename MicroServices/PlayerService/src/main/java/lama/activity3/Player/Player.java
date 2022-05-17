@@ -2,10 +2,8 @@ package lama.activity3.Player;
 
 import lama.activity3.CardDTO.Card;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Player {
@@ -16,17 +14,18 @@ public class Player {
     private String name;
     private String surname;
     private String password;
-    private transient Card[] cardList;
+    @ElementCollection
+    private List<Long> CardIdCollection;
     private int money;
 
     public Player() {
     }
 
-    public Player(String name, String surname, String password, Card[] cardList, int money) {
+    public Player(String name, String surname, String password, List<Long> CardIdCollection, int money) {
         this.name = name;
         this.surname = surname;
         this.password = password;
-        this.cardList = cardList;
+        this.CardIdCollection = CardIdCollection;
         this.money = money;
     }
 
@@ -37,7 +36,7 @@ public class Player {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
-                ", cardList=" + cardList +
+                ", cardList=" + CardIdCollection +
                 ", money=" + money +
                 '}';
     }
@@ -74,12 +73,12 @@ public class Player {
         this.password = password;
     }
 
-    public Card[] getCardList() {
-        return cardList;
+    public List<Long> getCardList() {
+        return CardIdCollection;
     }
 
-    public void setCardList(Card[] cardList) {
-        this.cardList = cardList;
+    public void setCardList(List<Long> CardIdCollection) {
+        this.CardIdCollection = CardIdCollection;
     }
 
     public int getMoney() {
