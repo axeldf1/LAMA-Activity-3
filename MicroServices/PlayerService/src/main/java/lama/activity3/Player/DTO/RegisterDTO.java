@@ -1,9 +1,9 @@
-package lama.activity3.Player;
+package lama.activity3.Player.DTO;
 
 public class RegisterDTO {
     String name;
     String surname;
-    String mdp;
+    String password;
 
     public String getName() {
         return name;
@@ -13,7 +13,7 @@ public class RegisterDTO {
         return surname;
     }
 
-    public String getMdp() {
-        return mdp;
+    public String getPassword() {
+        return password;
     }
 }

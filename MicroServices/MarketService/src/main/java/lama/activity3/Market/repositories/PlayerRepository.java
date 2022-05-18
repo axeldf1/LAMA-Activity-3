@@ -3,8 +3,6 @@ package lama.activity3.Market.repositories;
 import lama.activity3.PlayerDTO.PlayerDTO;
 import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Repository
@@ -18,7 +16,8 @@ public class PlayerRepository {
         return response.getBody();
     }
 
-    public void sellCard(PlayerDTO player){
+//    TODO : change to PlayerUpdateDTO and combine methods below
+    public void putPlayer(PlayerDTO player){
         String completeUrl = playerApiUrl + "/" + player.getId();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<PlayerDTO> response = restTemplate.exchange(completeUrl, HttpMethod.PUT, null, PlayerDTO.class);

@@ -10,13 +10,13 @@ public class PlayerDTO {
     private String name;
     private String surname;
     private String password;
-    private List<Card> cardList;
+    private List<Long> cardList;
     private int money;
 
     public PlayerDTO() {
     }
 
-    public PlayerDTO(String name, String surname, String password, List<Card> cardList, int money) {
+    public PlayerDTO(String name, String surname, String password, List<Long> cardList, int money) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -52,7 +52,7 @@ public class PlayerDTO {
         return password;
     }
 
-    public List<Card> getCardList() {
+    public List<Long> getCardList() {
         return cardList;
     }
 
@@ -72,7 +72,7 @@ public class PlayerDTO {
         this.password = password;
     }
 
-    public void setCardList(List<Card> cardList) {
+    public void setCardList(List<Long> cardList) {
         this.cardList = cardList;
     }
 

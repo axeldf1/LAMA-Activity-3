@@ -1,5 +1,7 @@
 package lama.activity3.Player;
 
+import lama.activity3.Player.DTO.PlayerUpdateDTO;
+import lama.activity3.Player.DTO.RegisterDTO;
 import lama.activity3.Player.Exceptions.PlayerNotFoundException;
 import lama.activity3.Player.Repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,6 @@ public class PlayerController {
     @Autowired
     private PlayerRepository repository;
 
-//    @Autowired
-//    private lama.activity3.Player.Repositories.CardRepository CardRepository;
-
     PlayerController(PlayerRepository repository) {
         this.repository = repository;
     }
@@ -26,10 +25,9 @@ public class PlayerController {
         return repository.findAll();
     }
 
-    //    TODO : requestBody
     @PostMapping("/players")
     void newPlayer(@RequestBody RegisterDTO registerDTO) {
-        playerService.Register(registerDTO.getName(), registerDTO.getSurname(), registerDTO.getMdp());
+        playerService.Register(registerDTO.getName(), registerDTO.getSurname(), registerDTO.getPassword());
     }
 
     @GetMapping("/players/{id}")
@@ -39,16 +37,17 @@ public class PlayerController {
     }
 
     @PutMapping("/players/{id}")
-    Player replaceUser(@RequestBody Player newPlayer, @PathVariable Long id) {
+    Player replaceUser(@RequestBody PlayerUpdateDTO newPlayer, @PathVariable Long id) {
         return repository.findById(id)
                 .map(user -> {
                     user.setName(newPlayer.getName());
+                    user.setSurname(newPlayer.getSurname());
                     user.setMoney(newPlayer.getMoney());
+                    user.setCardList(newPlayer.getCardIdList());
                     return repository.save(user);
                 })
                 .orElseGet(() -> {
-                    newPlayer.setId(id);
-                    return repository.save(newPlayer);
+                    return null;
                 });
     }
 
@@ -56,10 +55,4 @@ public class PlayerController {
     void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }
-
-//    @GetMapping("/test/{amount}")
-//    Card[] test(@PathVariable int amount) {
-//        return CardRepository.GetRandomCards(amount);
-//    }
-
 }

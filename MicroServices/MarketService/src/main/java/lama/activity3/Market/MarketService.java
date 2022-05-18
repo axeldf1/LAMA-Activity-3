@@ -1,6 +1,5 @@
 package lama.activity3.Market;
 
-import lama.activity3.CardDTO.Card;
 import lama.activity3.Market.Model.Offer;
 import lama.activity3.Market.repositories.CardRepository;
 import lama.activity3.Market.repositories.MarketRepository;
@@ -22,27 +21,25 @@ public class MarketService {
     PlayerRepository playerRepository;
 
     public void SellCard(int playerId, int cardId, int price, int quantity) {
+        PlayerDTO player = playerRepository.GetPlayer(playerId);
         Offer offer = new Offer(playerId, cardId, price, quantity);
         offers.add(offer);
-//        player.giveMoney(offer.getPrice() * offer.getQuantity());
+        player.setMoney(offer.getPrice() * offer.getQuantity());
         marketRepository.save(offer);
+        playerRepository.putPlayer(player);
     }
 
-    public void test(int playerId){
+    public void BuyCard(int playerId, Offer offer) {
         PlayerDTO player = playerRepository.GetPlayer(playerId);
-        player.setMoney(player.getMoney() + 999);
-        playerRepository.sellCard(player);
-    }
+        if (player.getMoney() < offer.getPrice() * offer.getQuantity()) return;
 
-//    public void BuyCard(User user, Offer offer) {
-//
-//        if (user.getMoney() < offer.getPrice() * offer.getQuantity()) return;
-//
-//        for (int i = 0; i < offer.getQuantity(); i++)
-//            user.getCardList().add(offer.getCardId());
-//
-//        user.takeMoney(offer.getPrice() * offer.getQuantity());
-//        offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
-//        marketRepository.deleteById(offer.getId());
-//    }
+        List<Long> cardList = player.getCardList();
+        for (int i = 0; i < offer.getQuantity(); i++)
+            Long l = new Long(offer.getCardId());
+            cardList.add(l);
+
+        user.takeMoney(offer.getPrice() * offer.getQuantity());
+        offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
+        marketRepository.deleteById(offer.getId());
+    }
 }

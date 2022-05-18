@@ -35,7 +35,7 @@ public class MarketController {
     }
 
     @PutMapping("/offers/{id}")
-    Offer replaceUser(@RequestBody Offer newOffer, @PathVariable Long id) {
+    Offer replaceOffer(@RequestBody Offer newOffer, @PathVariable Long id) {
         return marketRepository.findById(id)
                 .map(offer -> {
                     offer.setCardId(newOffer.getCardId());
@@ -49,11 +49,8 @@ public class MarketController {
                 });
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/offers/{id}")
     void deleteUser(@PathVariable Long id) {
         marketRepository.deleteById(id);
     }
-
-    @GetMapping("/test/{playerId}")
-    void test(@PathVariable int playerId) { marketService.test(playerId);}
 }
