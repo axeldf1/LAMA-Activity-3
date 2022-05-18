@@ -59,4 +59,24 @@ public class PlayerDTO {
     public int getMoney() {
         return money;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 }

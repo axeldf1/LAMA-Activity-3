@@ -21,22 +21,28 @@ public class MarketService {
     @Autowired
     PlayerRepository playerRepository;
 
-    public void SellCard(PlayerDTO player, Card card, int price, int quantity) {
-        Offer offer = new Offer(player, card, price, quantity);
+    public void SellCard(int playerId, int cardId, int price, int quantity) {
+        Offer offer = new Offer(playerId, cardId, price, quantity);
         offers.add(offer);
-        player.giveMoney(offer.getPrice() * offer.getQuantity());
+//        player.giveMoney(offer.getPrice() * offer.getQuantity());
         marketRepository.save(offer);
     }
 
-    public void BuyCard(User user, Offer offer) {
-
-        if (user.getMoney() < offer.getPrice() * offer.getQuantity()) return;
-
-        for (int i = 0; i < offer.getQuantity(); i++)
-            user.getCardList().add(offer.getCard());
-
-        user.takeMoney(offer.getPrice() * offer.getQuantity());
-        offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
-        marketRepository.deleteById(offer.getId());
+    public void test(int playerId){
+        PlayerDTO player = playerRepository.GetPlayer(playerId);
+        player.setMoney(player.getMoney() + 999);
+        playerRepository.sellCard(player);
     }
+
+//    public void BuyCard(User user, Offer offer) {
+//
+//        if (user.getMoney() < offer.getPrice() * offer.getQuantity()) return;
+//
+//        for (int i = 0; i < offer.getQuantity(); i++)
+//            user.getCardList().add(offer.getCardId());
+//
+//        user.takeMoney(offer.getPrice() * offer.getQuantity());
+//        offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
+//        marketRepository.deleteById(offer.getId());
+//    }
 }

@@ -1,8 +1,5 @@
 package lama.activity3.Market.Model;
 
-import lama.activity3.CardDTO.Card;
-import lama.activity3.PlayerDTO.PlayerDTO;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,10 +7,8 @@ import javax.persistence.Id;
 @Entity
 public class Offer {
 
-    //    @OneToOne(fetch = FetchType.EAGER)
-    transient PlayerDTO player;
-    //    @OneToOne(fetch = FetchType.EAGER)
-    transient Card card;
+    int playerId;
+    int cardId;
     int price;
     int quantity;
     @Id
@@ -23,43 +18,43 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(PlayerDTO player, Card card, int price, int quantity) {
-        this.player = player;
-        this.card = card;
+    public Offer(int player, int card, int price, int quantity) {
+        this.playerId = player;
+        this.cardId = card;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public PlayerDTO getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
-    public Card getCard() {
-        return card;
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
     public void setPrice(int price) {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {

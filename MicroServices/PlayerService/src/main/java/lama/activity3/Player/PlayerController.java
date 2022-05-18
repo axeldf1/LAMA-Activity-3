@@ -28,8 +28,8 @@ public class PlayerController {
 
     //    TODO : requestBody
     @PostMapping("/players")
-    void newPlayer(String name, String surname, String password) {
-        playerService.Register(name, surname, password);
+    void newPlayer(@RequestBody RegisterDTO registerDTO) {
+        playerService.Register(registerDTO.getName(), registerDTO.getSurname(), registerDTO.getMdp());
     }
 
     @GetMapping("/players/{id}")

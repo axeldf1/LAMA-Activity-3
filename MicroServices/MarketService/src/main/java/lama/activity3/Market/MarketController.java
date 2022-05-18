@@ -1,16 +1,17 @@
 package lama.activity3.Market;
 
-import lama.activity3.CardDTO.Card;
 import lama.activity3.Market.Exceptions.OfferNotFoundException;
 import lama.activity3.Market.Model.Offer;
 import lama.activity3.Market.repositories.MarketRepository;
-import lama.activity3.PlayerDTO.PlayerDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class MarketController {
+    @Autowired
+    private MarketService marketService;
     private final MarketRepository marketRepository;
 
     public MarketController(MarketRepository marketRepository) {
@@ -23,8 +24,8 @@ public class MarketController {
     }
 
     @PostMapping("/offers")
-    void newOffer(PlayerDTO player, Card card, int price, int quantity) {
-        marketRepository.save(new Offer(player, card, price, quantity));
+    void newOffer(int playerId, int cardId, int price, int quantity) {
+        marketRepository.save(new Offer(playerId, cardId, price, quantity));
     }
 
     @GetMapping("/offers/{id}")
@@ -37,7 +38,7 @@ public class MarketController {
     Offer replaceUser(@RequestBody Offer newOffer, @PathVariable Long id) {
         return marketRepository.findById(id)
                 .map(offer -> {
-                    offer.setCard(newOffer.getCard());
+                    offer.setCardId(newOffer.getCardId());
                     offer.setPrice(newOffer.getPrice());
                     offer.setQuantity(newOffer.getQuantity());
                     return marketRepository.save(offer);
@@ -52,4 +53,7 @@ public class MarketController {
     void deleteUser(@PathVariable Long id) {
         marketRepository.deleteById(id);
     }
+
+    @GetMapping("/test/{playerId}")
+    void test(@PathVariable int playerId) { marketService.test(playerId);}
 }
