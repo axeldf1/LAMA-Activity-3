@@ -41,6 +41,21 @@
 			<artifactId>PlayerDTO</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>lama.activity-3</groupId>
+			<artifactId>RegisterDTO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>lama.activity-3</groupId>
+			<artifactId>PlayerUpdateDTO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>lama.activity-3</groupId>
+			<artifactId>CardDTO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

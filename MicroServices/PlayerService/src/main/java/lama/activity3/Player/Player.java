@@ -1,7 +1,5 @@
 package lama.activity3.Player;
 
-import lama.activity3.CardDTO.Card;
-
 import javax.persistence.*;
 import java.util.List;
 

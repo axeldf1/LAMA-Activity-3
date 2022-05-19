@@ -21,6 +21,7 @@ class LoadDatabase {
 
         return args -> {
             playerService.Register("axel", "boomer", "mdp");
+            playerService.Register("Louis", "cringe", "mdp");
         };
     }
 }

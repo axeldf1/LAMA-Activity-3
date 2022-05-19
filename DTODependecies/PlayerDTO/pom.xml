@@ -12,11 +12,4 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PlayerDTO</name>
 	<description>PLAYER DTO model</description>
-	<dependencies>
-		<dependency>
-			<groupId>lama.activity-3</groupId>
-			<artifactId>CardDTO</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>

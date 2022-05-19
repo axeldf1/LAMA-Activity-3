@@ -29,17 +29,23 @@ public class MarketService {
         playerRepository.putPlayer(player);
     }
 
-    public void BuyCard(int playerId, Offer offer) {
-        PlayerDTO player = playerRepository.GetPlayer(playerId);
-        if (player.getMoney() < offer.getPrice() * offer.getQuantity()) return;
+    public void BuyCard(int playerId, Long offerId) {
+        Offer offer = marketRepository.getById(offerId);
+        PlayerDTO buyer = playerRepository.GetPlayer(playerId);
+        PlayerDTO seller = playerRepository.GetPlayer(offer.getPlayerId());
 
-        List<Long> cardList = player.getCardList();
+        if (buyer.getMoney() < offer.getPrice() * offer.getQuantity()) return;
+
+        List<Long> cardList = buyer.getCardList();
         for (int i = 0; i < offer.getQuantity(); i++)
-            Long l = new Long(offer.getCardId());
-            cardList.add(l);
+            cardList.add((long) offer.getCardId());
 
-        user.takeMoney(offer.getPrice() * offer.getQuantity());
-        offer.getUser().giveMoney(offer.getPrice() * offer.getQuantity());
+
+        buyer.setMoney(buyer.getMoney() - offer.getPrice() * offer.getQuantity());
+        playerRepository.putPlayer(buyer);
+        seller.setMoney(seller.getMoney() + offer.getPrice() * offer.getQuantity());
+        playerRepository.putPlayer(seller);
+
         marketRepository.deleteById(offer.getId());
     }
 }

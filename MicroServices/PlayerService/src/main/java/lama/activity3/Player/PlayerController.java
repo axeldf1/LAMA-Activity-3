@@ -1,9 +1,9 @@
 package lama.activity3.Player;
 
-import lama.activity3.Player.DTO.PlayerUpdateDTO;
-import lama.activity3.Player.DTO.RegisterDTO;
 import lama.activity3.Player.Exceptions.PlayerNotFoundException;
 import lama.activity3.Player.Repositories.PlayerRepository;
+import lama.activity3.PlayerDTO.PlayerDTO;
+import lama.activity3.RegisterDTO.RegisterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,13 +37,15 @@ public class PlayerController {
     }
 
     @PutMapping("/players/{id}")
-    Player replaceUser(@RequestBody PlayerUpdateDTO newPlayer, @PathVariable Long id) {
+    Player replaceUser(@RequestBody PlayerDTO newPlayer, @PathVariable Long id) {
+        System.out.println(newPlayer);
         return repository.findById(id)
                 .map(user -> {
                     user.setName(newPlayer.getName());
                     user.setSurname(newPlayer.getSurname());
                     user.setMoney(newPlayer.getMoney());
-                    user.setCardList(newPlayer.getCardIdList());
+                    user.setCardList(newPlayer.getCardList());
+//                    user.setCardList(newPlayer.getCardIdList());
                     return repository.save(user);
                 })
                 .orElseGet(() -> {

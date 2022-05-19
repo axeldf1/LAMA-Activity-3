@@ -1,7 +1,9 @@
 package lama.activity3.Market.repositories;
 
 import lama.activity3.PlayerDTO.PlayerDTO;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,11 +18,10 @@ public class PlayerRepository {
         return response.getBody();
     }
 
-//    TODO : change to PlayerUpdateDTO and combine methods below
-    public void putPlayer(PlayerDTO player){
+    public void putPlayer(PlayerDTO player) {
         String completeUrl = playerApiUrl + "/" + player.getId();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<PlayerDTO> response = restTemplate.exchange(completeUrl, HttpMethod.PUT, null, PlayerDTO.class);
-        System.out.println(response.getBody());
+        HttpEntity<PlayerDTO> requestUpdate = new HttpEntity<>(player);
+        restTemplate.exchange(completeUrl, HttpMethod.PUT, requestUpdate, Void.class);
     }
 }

@@ -1,7 +1,5 @@
 package lama.activity3.PlayerDTO;
 
-import lama.activity3.CardDTO.Card;
-
 import java.util.List;
 
 public class PlayerDTO {

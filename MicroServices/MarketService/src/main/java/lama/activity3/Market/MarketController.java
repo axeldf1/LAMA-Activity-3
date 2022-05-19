@@ -24,14 +24,19 @@ public class MarketController {
     }
 
     @PostMapping("/offers")
-    void newOffer(int playerId, int cardId, int price, int quantity) {
-        marketRepository.save(new Offer(playerId, cardId, price, quantity));
+    void newOffer(@RequestBody Offer offer) {
+        marketRepository.save(new Offer(offer.getPlayerId(), offer.getCardId(), offer.getPrice(), offer.getQuantity()));
     }
 
     @GetMapping("/offers/{id}")
     Offer one(@PathVariable Long id) {
         return marketRepository.findById(id)
                 .orElseThrow(() -> new OfferNotFoundException(id));
+    }
+
+    @GetMapping("/offers/buy/{offerId}")
+    void buyOffer(@PathVariable Long offerId, @RequestParam int playerId){
+        marketService.BuyCard(playerId, offerId);
     }
 
     @PutMapping("/offers/{id}")
