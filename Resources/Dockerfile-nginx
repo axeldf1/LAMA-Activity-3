@@ -1,0 +1,7 @@
+FROM nginx
+
+RUN 'curl github.com/axeldf1/LAMA-Activity-3/Resources/nginx.conf'
+
+CP nginx.conf /etc/nginx/nginx.conf
+
+RUN 'systemctl restart nginx.service'
