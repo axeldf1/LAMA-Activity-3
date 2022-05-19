@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class MarketService {
-    List<Offer> offers;
     @Autowired
     MarketRepository marketRepository;
     @Autowired
@@ -20,16 +19,28 @@ public class MarketService {
     @Autowired
     PlayerRepository playerRepository;
 
-    public void SellCard(int playerId, int cardId, int price, int quantity) {
-        PlayerDTO player = playerRepository.GetPlayer(playerId);
-        Offer offer = new Offer(playerId, cardId, price, quantity);
-        offers.add(offer);
-        player.setMoney(offer.getPrice() * offer.getQuantity());
+    public void CreateOffer(Offer offer) {
+        PlayerDTO player = playerRepository.GetPlayer(offer.getPlayerId());
+
+        List<Long> playerCardList = player.getCardList();
+        int cardLeft = offer.getQuantity();
+        Long l = (long) offer.getCardId();
+
+        for (int i = 0; i < cardLeft; i++) {
+
+            if (playerCardList.remove(l))
+                cardLeft--;
+        }
+
+        if (cardLeft != 0) return;
+
+        player.setCardList(playerCardList);
+
         marketRepository.save(offer);
         playerRepository.putPlayer(player);
     }
 
-    public void BuyCard(int playerId, Long offerId) {
+    public void BuyOffer(int playerId, Long offerId) {
         Offer offer = marketRepository.getById(offerId);
         PlayerDTO buyer = playerRepository.GetPlayer(playerId);
         PlayerDTO seller = playerRepository.GetPlayer(offer.getPlayerId());
@@ -47,5 +58,18 @@ public class MarketService {
         playerRepository.putPlayer(seller);
 
         marketRepository.deleteById(offer.getId());
+    }
+
+    public void CancelOffer(Long offerId) {
+        Offer offer = marketRepository.getById(offerId);
+        PlayerDTO player = playerRepository.GetPlayer(offer.getPlayerId());
+
+        List<Long> playerCardList = player.getCardList();
+
+        for (int i = 0; i < offer.getQuantity(); i++)
+            playerCardList.add((long) offer.getCardId());
+
+        playerRepository.putPlayer(player);
+        marketRepository.deleteById(offerId);
     }
 }

@@ -10,9 +10,9 @@ import java.util.List;
 
 @RestController
 public class MarketController {
+    private final MarketRepository marketRepository;
     @Autowired
     private MarketService marketService;
-    private final MarketRepository marketRepository;
 
     public MarketController(MarketRepository marketRepository) {
         this.marketRepository = marketRepository;
@@ -25,7 +25,7 @@ public class MarketController {
 
     @PostMapping("/offers")
     void newOffer(@RequestBody Offer offer) {
-        marketRepository.save(new Offer(offer.getPlayerId(), offer.getCardId(), offer.getPrice(), offer.getQuantity()));
+        marketService.CreateOffer(offer);
     }
 
     @GetMapping("/offers/{id}")
@@ -34,9 +34,9 @@ public class MarketController {
                 .orElseThrow(() -> new OfferNotFoundException(id));
     }
 
-    @GetMapping("/offers/buy/{offerId}")
-    void buyOffer(@PathVariable Long offerId, @RequestParam int playerId){
-        marketService.BuyCard(playerId, offerId);
+    @PutMapping("/offers/buy/{offerId}")
+    void buyOffer(@PathVariable Long offerId, @RequestParam int playerId) {
+        marketService.BuyOffer(playerId, offerId);
     }
 
     @PutMapping("/offers/{id}")
@@ -55,7 +55,5 @@ public class MarketController {
     }
 
     @DeleteMapping("/offers/{id}")
-    void deleteUser(@PathVariable Long id) {
-        marketRepository.deleteById(id);
-    }
+    void deleteUser(@PathVariable Long id) { marketService.CancelOffer(id); }
 }
