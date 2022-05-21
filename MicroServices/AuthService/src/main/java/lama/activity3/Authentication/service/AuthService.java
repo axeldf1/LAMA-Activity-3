@@ -1,5 +1,6 @@
 package lama.activity3.Authentication.service;
 
+import lama.activity3.AuthDTO.AuthDTO;
 import lama.activity3.Authentication.model.AuthUser;
 import lama.activity3.Authentication.repository.AuthRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,11 @@ public class AuthService {
         return StringUtils.EMPTY;
     }
 
+        public void register(AuthDTO newPlayer){
+            AuthUser player = new AuthUser(newPlayer.getUserName(), newPlayer.getPassword());
+            authRepository.save(player);
+        }
+
     public Optional<User> findByToken(String token) {
         Optional<AuthUser> player = authRepository.findByToken(token);
         if (player.isPresent()) {
@@ -41,7 +47,7 @@ public class AuthService {
     }
 
     public AuthUser findById(Long id) {
-        Optional<AuthUser> customer = authRepository.findById(id);
-        return customer.orElse(null);
+        Optional<AuthUser> player = authRepository.findById(id);
+        return player.orElse(null);
     }
 }

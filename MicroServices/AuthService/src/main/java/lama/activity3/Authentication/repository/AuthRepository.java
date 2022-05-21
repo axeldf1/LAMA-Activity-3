@@ -12,4 +12,6 @@ public interface AuthRepository extends JpaRepository<AuthUser, Long> {
     @Query(value = "SELECT u FROM AuthUser u where u.user_name = ?1 and u.password = ?2 ")
     Optional<AuthUser> login(String username, String password);
     Optional<AuthUser> findByToken(String token);
+    @Query("select a from AuthUser a where a.user_name = ?1")
+    Optional<AuthUser> findAuthUserByUser_name(String username);
 }
