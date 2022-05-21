@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class CardRepository {
-    String cardApiUrl = "http://localhost:8085/cards";
+    String cardApiUrl = "http://localhost:8080/cards";
 
     public Card GetCard(int cardID) {
         String completeUrl = cardApiUrl + "/" + cardID;

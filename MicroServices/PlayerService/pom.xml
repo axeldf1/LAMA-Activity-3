@@ -25,7 +25,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -43,17 +42,12 @@
 		</dependency>
 		<dependency>
 			<groupId>lama.activity-3</groupId>
-			<artifactId>RegisterDTO</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>lama.activity-3</groupId>
-			<artifactId>PlayerUpdateDTO</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>lama.activity-3</groupId>
 			<artifactId>CardDTO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>lama.activity-3</groupId>
+			<artifactId>AuthDTO</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

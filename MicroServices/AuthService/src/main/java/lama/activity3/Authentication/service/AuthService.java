@@ -1,7 +1,9 @@
 package lama.activity3.Authentication.service;
 
+import lama.activity3.AuthDTO.AuthDTO;
 import lama.activity3.Authentication.model.AuthUser;
 import lama.activity3.Authentication.repository.AuthRepository;
+import lama.activity3.Authentication.repository.PlayerRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -15,6 +17,8 @@ import java.util.UUID;
 public class AuthService {
     @Autowired
     AuthRepository authRepository;
+    @Autowired
+    PlayerRepository playerRepository;
 
     public String login(String username, String password) {
         Optional<AuthUser> player = authRepository.login(username, password);
@@ -29,11 +33,18 @@ public class AuthService {
         return StringUtils.EMPTY;
     }
 
+    public void register(AuthDTO newPlayer) {
+        AuthUser player = new AuthUser(newPlayer.getUserName(), newPlayer.getPassword());
+        authRepository.save(player);
+        System.out.println(player);
+        playerRepository.createPlayer(player.getUserId());
+    }
+
     public Optional<User> findByToken(String token) {
         Optional<AuthUser> player = authRepository.findByToken(token);
         if (player.isPresent()) {
             AuthUser player1 = player.get();
-            User user = new User(player1.getUser_name(), player1.getPassword(), true, true, true, true,
+            User user = new User(player1.getUserName(), player1.getPassword(), true, true, true, true,
                     AuthorityUtils.createAuthorityList("USER"));
             return Optional.of(user);
         }
@@ -41,7 +52,7 @@ public class AuthService {
     }
 
     public AuthUser findById(Long id) {
-        Optional<AuthUser> customer = authRepository.findById(id);
-        return customer.orElse(null);
+        Optional<AuthUser> player = authRepository.findById(id);
+        return player.orElse(null);
     }
 }

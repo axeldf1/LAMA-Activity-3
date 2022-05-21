@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/market")
 public class MarketController {
     private final MarketRepository marketRepository;
     @Autowired
@@ -18,28 +19,28 @@ public class MarketController {
         this.marketRepository = marketRepository;
     }
 
-    @GetMapping("/offers")
+    @GetMapping("")
     List<Offer> all() {
         return marketRepository.findAll();
     }
 
-    @PostMapping("/offers")
+    @PostMapping("")
     void newOffer(@RequestBody Offer offer) {
         marketService.CreateOffer(offer);
     }
 
-    @GetMapping("/offers/{id}")
+    @GetMapping("/{id}")
     Offer one(@PathVariable Long id) {
         return marketRepository.findById(id)
                 .orElseThrow(() -> new OfferNotFoundException(id));
     }
 
-    @PutMapping("/offers/buy/{offerId}")
+    @PutMapping("/buy/{offerId}")
     void buyOffer(@PathVariable Long offerId, @RequestParam int playerId) {
         marketService.BuyOffer(playerId, offerId);
     }
 
-    @PutMapping("/offers/{id}")
+    @PutMapping("/{id}")
     Offer replaceOffer(@RequestBody Offer newOffer, @PathVariable Long id) {
         return marketRepository.findById(id)
                 .map(offer -> {
@@ -54,6 +55,6 @@ public class MarketController {
                 });
     }
 
-    @DeleteMapping("/offers/{id}")
+    @DeleteMapping("/{id}")
     void deleteUser(@PathVariable Long id) { marketService.CancelOffer(id); }
 }

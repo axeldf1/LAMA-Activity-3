@@ -9,22 +9,26 @@ public class AuthUser {
     @Id
     @GeneratedValue
     private Long userId;
-    private String user_name;
+    private String userName;
     private String password;
     private String token;
 
     public AuthUser() {
     }
 
-    public AuthUser(String user_name, String password, String token) {
-        this.user_name = user_name;
+    public AuthUser(String userName, String password, String token) {
+        this.userName = userName;
         this.password = password;
         this.token = token;
     }
 
-    public AuthUser(String user_name, String password) {
-        this.user_name = user_name;
+    public AuthUser(String userName, String password) {
+        this.userName = userName;
         this.password = password;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getUserId() {
@@ -47,11 +51,21 @@ public class AuthUser {
         this.token = token;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String user_name) {
+        this.userName = user_name;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthUser{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class PlayerRepository {
-    String playerApiUrl = "http://localhost:8081/players";
+    String playerApiUrl = "http://localhost:8080/players";
 
     public PlayerDTO GetPlayer(int playerId) {
         String completeUrl = playerApiUrl + "/" + playerId;

@@ -1,17 +1,18 @@
 package lama.activity3.Player;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
 public class Player {
     @Id
-    @GeneratedValue
     private Long id;
-    @Column(unique = true)
-    private String name;
-    private String surname;
-    private String password;
+    //    @Column(unique = true)
+//    private String name;
+//    private String surname;
+//    private String password;
     @ElementCollection
     private List<Long> CardIdCollection;
     private int money;
@@ -19,10 +20,8 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, String surname, String password, List<Long> CardIdCollection, int money) {
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
+    public Player(Long id, List<Long> CardIdCollection, int money) {
+        this.id = id;
         this.CardIdCollection = CardIdCollection;
         this.money = money;
     }
@@ -31,9 +30,6 @@ public class Player {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", password='" + password + '\'' +
                 ", cardList=" + CardIdCollection +
                 ", money=" + money +
                 '}';
@@ -45,30 +41,6 @@ public class Player {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Long> getCardList() {
