@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/players")
 public class PlayerController {
     @Autowired
     private PlayerService playerService;
@@ -19,23 +20,23 @@ public class PlayerController {
         this.repository = repository;
     }
 
-    @GetMapping("/players")
+    @GetMapping("")
     List<Player> all() {
         return repository.findAll();
     }
 
-    @PostMapping("/players")
+    @PostMapping()
     void newPlayer(@RequestParam Long id) {
         playerService.Register(id);
     }
 
-    @GetMapping("/players/{id}")
+    @GetMapping("/{id}")
     Player one(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new PlayerNotFoundException(id));
     }
 
-    @PutMapping("/players/{id}")
+    @PutMapping("/{id}")
     Player replaceUser(@RequestBody PlayerDTO newPlayer, @PathVariable Long id) {
         System.out.println(newPlayer);
         return repository.findById(id)
@@ -52,7 +53,7 @@ public class PlayerController {
                 });
     }
 
-    @DeleteMapping("/players/{id}")
+    @DeleteMapping("/{id}")
     void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }

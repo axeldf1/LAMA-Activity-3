@@ -26,8 +26,7 @@ public class MarketService {
         int cardLeft = offer.getQuantity();
         Long l = (long) offer.getCardId();
 
-        for (int i = 0; i < cardLeft; i++) {
-
+        for (int i = cardLeft; i > 0; i--) {
             if (playerCardList.remove(l))
                 cardLeft--;
         }

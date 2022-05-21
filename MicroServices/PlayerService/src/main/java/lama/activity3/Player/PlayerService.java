@@ -27,7 +27,7 @@ public class PlayerService {
         playerRepository.save(newUser);
     }
 
-    public Long FindByName(String name) {
-        return playerRepository.findIdByName(name);
-    }
+//    public Long FindByName(String name) {
+//        return playerRepository.findIdByName(name);
+//    }
 }
