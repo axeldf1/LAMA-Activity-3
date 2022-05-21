@@ -48,9 +48,7 @@ public class PlayerController {
 //                    user.setCardList(newPlayer.getCardIdList());
                     return repository.save(user);
                 })
-                .orElseGet(() -> {
-                    return null;
-                });
+                .orElseThrow(() -> new PlayerNotFoundException(id));
     }
 
     @DeleteMapping("/{id}")
