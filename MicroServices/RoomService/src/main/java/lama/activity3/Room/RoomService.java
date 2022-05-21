@@ -1,16 +1,12 @@
 package lama.activity3.Room;
 
-import lama.activity3.PlayerDTO.PlayerDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoomService {
 
-    public Room CreateRoom(int bet, PlayerDTO host)
+    public void JoinRoom(Room room, Long guest)
     {
-        return new Room(bet, host);
-    }
-
-    public void JoinRoom(Room room, PlayerDTO guest)
-    {
-        room.setGuest(guest);
+        room.setGuestId(guest);
     }
 }

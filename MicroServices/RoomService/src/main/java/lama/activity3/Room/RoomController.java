@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rooms")
 public class RoomController {
 
     private final RoomRepository repository;
@@ -18,33 +19,28 @@ public class RoomController {
         this.repository = repository;
     }
 
-    @GetMapping("/")
-    public String Index() {
-        return "You are on the Room microservice";
-    }
-
-    @GetMapping("/rooms")
+    @GetMapping("")
     List<Room> all()
     {
         return repository.findAll();
     }
 
-    @PostMapping("/rooms")
+    @PostMapping("")
             Room newRoom(@RequestBody Room newRoom)
     {
         return repository.save(newRoom);
     }
 
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/{id}")
     Room one(@PathVariable Long id)
     {
         return repository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
     }
 
-    @PostMapping("/rooms/{id}")
-    public Room CreateRoom(@RequestBody int bet, @RequestBody PlayerDTO host)
+    @PostMapping("/{id}")
+    public Room CreateRoom(@RequestBody Room room)
     {
-        return repository.save(service.CreateRoom(bet, host));
+        return repository.save(room);
     }
 
     @GetMapping("/{id]")

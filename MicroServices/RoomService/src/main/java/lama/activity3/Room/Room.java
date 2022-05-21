@@ -1,7 +1,5 @@
 package lama.activity3.Room;
 
-import lama.activity3.PlayerDTO.PlayerDTO;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,28 +10,49 @@ public class Room {
     @Id
     @GeneratedValue
     private Long id;
-    private PlayerDTO host;
-    private PlayerDTO guest;
+    private Long hostId;
+    private Long guestId;
     private int bet;
 
-    public Room()
-    {
+    public Room() {
 
     }
 
-    public Room(int bet, PlayerDTO host)
-    {
+    public Room(int bet, Long hostId) {
         this.bet = bet;
-        this.host = host;
-        this.guest = null;
+        this.hostId = hostId;
+        this.guestId = null;
     }
 
-    public void setGuest(PlayerDTO guest) {
-        this.guest = guest;
-    }
-
-    public Long getId()
-    {
+    public Long getId() {
         return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(Long hostId) {
+        this.hostId = hostId;
+    }
+
+    public Long getGuestId() {
+        return guestId;
+    }
+
+    public void setGuestId(Long guest) {
+        this.guestId = guest;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
     }
 }
