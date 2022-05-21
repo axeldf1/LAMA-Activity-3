@@ -2,20 +2,17 @@ import React, {Component, useState} from "react";
 import {Card, Grid, GridColumn, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import {ListCard} from "./list";
+import {useSelector} from "react-redux";
+import {Login} from "./login";
 
 export const Menu=(props)=>{
-    const [currentUser, setCurrentUser] = useState({
-        id: 12,
-        username: "John",
-        lastname: "Doe",
-        login: "jDoe",
-        pwd: "jdoepwd",
-        money: 500,
-        title: "Sell"
-    });
+    let current_user = useSelector(state => state.userReducer.user);
 
-    return (
+    console.log("Current user =",current_user.id.toString())
+    if (typeof current_user.id === 'undefined'){
+        return <Login></Login>
+    }
+    else return (
         <div>
             <Header title="Menu"/>
             <Grid divided='vertically'>
@@ -40,10 +37,3 @@ export const Menu=(props)=>{
         </div>
     );
 }
-/*export default class index extends React.Component{
-    render() {
-        return(
-
-        )
-    }
-}*/

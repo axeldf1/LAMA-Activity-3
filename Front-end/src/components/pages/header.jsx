@@ -1,14 +1,7 @@
 import React, {Component, useState} from "react";
+import {useSelector} from "react-redux";
 export const Header=(props)=> {
-    const [currentUser, setCurrentUser] = useState({
-        id: 12,
-        username: "John",
-        lastname: "Doe",
-        login: "jDoe",
-        pwd: "jdoepwd",
-        money: 500,
-        title: "Buy"
-    });
+    let current_user = useSelector(state => state.userReducer.user);
 
 
     return (
@@ -17,8 +10,8 @@ export const Header=(props)=> {
                 <h3 className="ui right floated header">
                     <i className="user circle outline icon"></i>
                     <div className="content">
-                        <span id="userNameId">{props.name}</span>
-                        <div className="sub header"><span>{props.money}</span>$</div>
+                        <span id="userNameId">{current_user.name}</span>
+                        <div className="sub header"><span>{current_user.money}</span>$</div>
                     </div>
                 </h3>
 

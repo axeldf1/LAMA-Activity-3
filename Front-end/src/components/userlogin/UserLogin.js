@@ -1,49 +1,55 @@
 import act, { useState } from 'react';
 import { Form, Header,Button } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
-import {updateUser,submitUser} from '../../actions';
+import { useNavigate } from "react-router-dom";
+import {updateUser} from '../../actions';
 
 
 export const UserLogin = (props) =>{
-    const dispatch = useDispatch();
+
+    const [auth__content,SetAuth_content]= useState({value: '', pass: ''})
+
+
     const [currentUser,setCurrentUser]= useState({
-        username:"",
-        password:"",
-        re_password:""
+        id:5,
+        name:"",
+        surname:"",
+        balance:0
     });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    function processInput(event, { valueData }){
-        const target = event.currentTarget;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+    function handleChange(ev) {
+        const target = ev.currentTarget;
+        const value = target.value;
         const name = target.name;
-        console.log(event.target.value);
-        let currentVal=currentUser;
-        setCurrentUser({...currentUser, [name]: value});
-        currentVal[name]= value;
-        //props.handleChange(currentVal);
-        dispatch(updateUser(currentVal));
-    };
+        SetAuth_content({...auth__content, [name]: value })
 
-    function submitOrder(data){
-        // props.submitUserHandler(data);
-        dispatch(submitUser(currentUser));
+    }
+
+    function handleSubmit(ev) {
+        ev.preventDefault();
+
+        if (auth__content.value == 'admin' && auth__content.pass == 'admin') {
+            setCurrentUser({currentUser, id: 1, name: 'admin', surname:"superadmin", balance:100});
+            // system.out.print("Current id=", currentUser.id.toString())
+            dispatch(updateUser(currentUser));
+            navigate("/menu")
+        }
     }
 
     return (
-        <Form>
-            <Header as='h4' dividing>
-                User Connection
-            </Header>
+        <Form onSubmit={handleSubmit}>
             <Form.Field>
-                <Form.Input label="Username" placeholder="Username" onChange={processInput}  name="username" value={currentUser.username}/>
+                <label>Pseudo</label>
+                <input placeholder='Your pseudo' value={auth__content.value} name="value" onChange={handleChange} />
             </Form.Field>
             <Form.Field>
-                <Form.Input type="password" label="Password" placeholder="" onChange={processInput}  name="pwd" value={currentUser.pwd}/>
+                <label>Password</label>
+                <input type="password" placeholder='Your password' value={auth__content.pass}  name="pass" onChange={handleChange} />
             </Form.Field>
-            <Button type='submit' href="/register" onClick={submitOrder}>S'enregistrer</Button>
-            <Button type='submit' href="/login" onClick={submitOrder}>Connexion</Button>
+            <Button type='submit'>Connect</Button>
         </Form>
-
     );
 
 }

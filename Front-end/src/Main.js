@@ -11,9 +11,14 @@ import {Menu} from "./components/pages/menu";
 import {Login} from "./components/pages/login";
 import {Adduser} from "./components/pages/adduser";
 import {Test} from "./components/pages/test";
+import {createStore} from "redux";
+import globalReducer from "./reducers";
+import {Provider} from "react-redux";
 
+const store = createStore(globalReducer, window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
 function Main(){
     return(
+        <Provider store={store}>
         <Router>
             <div>
                 <Routes>
@@ -27,6 +32,7 @@ function Main(){
                 </Routes>
             </div>
         </Router>
+        </Provider>
     )
 }
 
