@@ -37,7 +37,7 @@ public class RoomController {
         service.CreateRoom(room);
     }
 
-    @PutMapping("/{id]")
+    @PutMapping("/{id}")
     public void JoinRoom(@PathVariable Long roomId, @RequestParam Long guestId)
     {
         service.JoinRoom(roomId, guestId);
@@ -47,5 +47,23 @@ public class RoomController {
     public void DeleteRoom(@PathVariable Long roomId)
     {
         service.DeleteRoom(roomId);
+    }
+
+    @PutMapping("/{id}")
+    public void HostChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+    {
+        service.ChooseCard(roomId, cardId, "HOST");
+    }
+
+    @PutMapping("/{id}")
+    public void GuestChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+    {
+        service.ChooseCard(roomId, cardId, "GUEST");
+    }
+
+    @PutMapping("/{id}")
+    public void GiveBet(@PathVariable Long roomId, @RequestParam Long winnerId)
+    {
+        service.GiveBet(roomId, winnerId);
     }
 }
