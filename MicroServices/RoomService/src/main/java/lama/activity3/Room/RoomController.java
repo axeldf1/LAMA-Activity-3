@@ -25,12 +25,6 @@ public class RoomController {
         return repository.findAll();
     }
 
-    @PostMapping("")
-            Room newRoom(@RequestBody Room newRoom)
-    {
-        return repository.save(newRoom);
-    }
-
     @GetMapping("/{id}")
     Room one(@PathVariable Long id)
     {
@@ -38,15 +32,14 @@ public class RoomController {
     }
 
     @PostMapping("/{id}")
-    public Room CreateRoom(@RequestBody Room room)
+    public void CreateRoom(@RequestBody Room room)
     {
-        return repository.save(room);
+        service.CreateRoom(room);
     }
 
-    @GetMapping("/{id]")
-    public String JoinRoom(@RequestBody Room room, @RequestBody PlayerDTO guest)
+    @PutMapping("/{id]")
+    public void JoinRoom(@RequestParam Long roomId, @RequestParam Long guestId)
     {
-        service.JoinRoom(room, guest);
-        return ("Player has joined Room " + room.getId());
+        service.JoinRoom(roomId, guestId);
     }
 }

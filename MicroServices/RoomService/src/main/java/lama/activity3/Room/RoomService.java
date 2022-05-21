@@ -1,12 +1,23 @@
 package lama.activity3.Room;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RoomService {
 
-    public void JoinRoom(Room room, Long guest)
+    @Autowired
+    RoomRepository roomRepository;
+
+    public void JoinRoom(Long roomId, Long guestId)
     {
-        room.setGuestId(guest);
+        Room roomToJoin = roomRepository.getById(roomId);
+        roomToJoin.setGuestId(guestId);
+        roomRepository.save(roomToJoin);
+        roomRepository.deleteById(roomId);
+    }
+
+    public Room CreateRoom(Room room) {
+        return roomRepository.save(room);
     }
 }
