@@ -38,8 +38,14 @@ public class RoomController {
     }
 
     @PutMapping("/{id]")
-    public void JoinRoom(@RequestParam Long roomId, @RequestParam Long guestId)
+    public void JoinRoom(@PathVariable Long roomId, @RequestParam Long guestId)
     {
         service.JoinRoom(roomId, guestId);
+    }
+
+    @DeleteMapping("/{id}")
+    public void DeleteRoom(@PathVariable Long roomId)
+    {
+        service.DeleteRoom(roomId);
     }
 }

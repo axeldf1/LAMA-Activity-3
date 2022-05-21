@@ -20,4 +20,9 @@ public class RoomService {
     public Room CreateRoom(Room room) {
         return roomRepository.save(room);
     }
+
+    public void DeleteRoom(Long roomId)
+    {
+        roomRepository.deleteById(roomId);
+    }
 }
