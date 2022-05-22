@@ -20,6 +20,11 @@ public class AuthController {
         authService.register(newUser);
     }
 
+    @PostMapping("/auth/login")
+    public String login(@RequestParam("username") final String username, @RequestParam("password") final String password) {
+        return authService.checkCredentials(username, password);
+    }
+
     @PostMapping("/auth/token")
     public String getToken(@RequestParam("username") final String username, @RequestParam("password") final String password) {
         String token = authService.login(username, password);

@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  gateway:
+    image: axeldf/gateway
+    restart: always
+    ports:
+      - "8080:8080"
+  authService:
+    image: axeldf/authservice
+    restart: always
+    ports:
+      - "8081:8081"
+  cardService:
+    image: axeldf/cardservice
+    restart: always
+    ports:
+      - "8082:8082"
+  playerService:
+    image: axeldf/playerservice
+    restart: always
+    ports:
+      - "8083:8083"
+  marketService:
+    image: axeldf/marketservice
+    restart: always
+    ports:
+      - "8084:8084"
+  roomService:
+    image: axeldf/gateway
+    restart: always
+    ports:
+      - "8084:8084"
+  gameService:
+    image: axeldf/gateway
+    restart: always
+    ports:
+      - "8084:8084"

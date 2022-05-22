@@ -40,6 +40,7 @@ public class MarketController {
         marketService.BuyOffer(playerId, offerId);
     }
 
+//    TODO : verif quantity and remove cards in player
     @PutMapping("/{id}")
     Offer replaceOffer(@RequestBody Offer newOffer, @PathVariable Long id) {
         return marketRepository.findById(id)

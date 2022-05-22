@@ -20,6 +20,11 @@ public class AuthService {
     @Autowired
     PlayerRepository playerRepository;
 
+    public String checkCredentials(String username, String password){
+        Optional<AuthUser> player = authRepository.login(username, password);
+        return player.map(authUser -> String.valueOf(authUser.getUserId())).orElse(null);
+    }
+
     public String login(String username, String password) {
         Optional<AuthUser> player = authRepository.login(username, password);
         if (player.isPresent()) {
