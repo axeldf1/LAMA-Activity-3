@@ -32,7 +32,13 @@ spring:
         uri: http://localhost:8086
         predicates:
         - Path=/rooms/**
-      - id: frontApp
-        uri: http://localhost:3000
-        predicates:
-          - Path=**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT

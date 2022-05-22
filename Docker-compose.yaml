@@ -30,9 +30,9 @@ services:
     image: axeldf/gateway
     restart: always
     ports:
-      - "8084:8084"
+      - "8085:8085"
   gameService:
     image: axeldf/gateway
     restart: always
     ports:
-      - "8084:8084"
+      - "8086:8086"
