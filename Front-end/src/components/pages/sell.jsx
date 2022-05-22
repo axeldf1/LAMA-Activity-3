@@ -2,7 +2,7 @@ import React, {Component, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import {ListCards} from "./list";
+import {ListCards} from "../list/container/list";
 import {UserSimpleDisplay} from "../user/components/UserSimpleDisplay";
 
 export const Sell=(props)=>{
@@ -24,7 +24,7 @@ export const Sell=(props)=>{
                     <Grid.Column>
 
                         <Segment>
-                            <ListCards></ListCards>
+                            <ListCards action="Sell"></ListCards>
                         </Segment>
 
                     </Grid.Column>

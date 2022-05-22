@@ -16,12 +16,18 @@ export const ListCards=(props)=>{
     const [cards,setCards] = useState([]);
 
     const fetchAllCards = async () => {
-        const { data } = await axios.get('http://localhost:8080/cards');
+        const { data } = await axios.get('http://localhost:8080/market');
         const cardlist = data;
         setCards(cardlist)
         console.log(cards);
     };
 
+    const fetchBuy1Card = async (id) => {
+        const { data } = await axios.get('http://localhost:8080/buy/'+id);
+        const cardlist = data;
+        setCards(cardlist)
+        console.log(cards);
+    };
     useEffect(() => {
         fetchAllCards();
 
@@ -62,7 +68,7 @@ export const ListCards=(props)=>{
                                     <td>{card.price}$</td>
                                     <td>
                                         <div className="ui vertical animated button" tabIndex="0">
-                                            <div className="hidden content">Sell</div>
+                                            <div className="hidden content" onClick={fetchBuy1Card()}>{props.action}</div>
                                             <div className="visible content">
                                                 <i className="shop icon"></i>
                                             </div>

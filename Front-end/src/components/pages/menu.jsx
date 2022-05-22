@@ -10,9 +10,12 @@ export const Menu=(props)=>{
 
     console.log("Current user =",current_user.id.toString())
     if (typeof current_user.id === 'undefined'){
+        console.log("PAS DANS LE ELSE");
         return <Login></Login>
     }
-    else return (
+    else{
+        console.log("DANS LE ELSE");
+     return (
         <div>
             <Header title="Menu"/>
             <Grid divided='vertically'>
@@ -36,4 +39,4 @@ export const Menu=(props)=>{
             <Link to={"/play"}>Play</Link>
         </div>
     );
-}
+}}

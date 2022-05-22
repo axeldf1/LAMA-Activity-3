@@ -29,10 +29,14 @@ export const UserLogin = (props) =>{
 
     function handleSubmit(ev) {
         ev.preventDefault();
-
         if (auth__content.value == 'admin' && auth__content.pass == 'admin') {
-            setCurrentUser({currentUser, id: 1, name: 'admin', surname:"superadmin", balance:100});
+            const {data} = {id:1, name:'admin', surname:"superadmin", balance:100};
+            currentUser.id = 1;
+            currentUser.name = "Deadpool";
+            currentUser.surname="superadmin";
+            currentUser.balance=100
             // system.out.print("Current id=", currentUser.id.toString())
+            console.log("Current id = ", currentUser.id.toString());
             dispatch(updateUser(currentUser));
             navigate("/menu")
         }

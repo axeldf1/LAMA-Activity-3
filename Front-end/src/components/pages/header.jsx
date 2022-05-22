@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 export const Header=(props)=> {
     let current_user = useSelector(state => state.userReducer.user);
 
-
     return (
         <div>
             <div className="ui clearing segment">
@@ -11,7 +10,7 @@ export const Header=(props)=> {
                     <i className="user circle outline icon"></i>
                     <div className="content">
                         <span id="userNameId">{current_user.name}</span>
-                        <div className="sub header"><span>{current_user.money}</span>$</div>
+                        <div className="sub header"><span>{current_user.balance}</span>$</div>
                     </div>
                 </h3>
 

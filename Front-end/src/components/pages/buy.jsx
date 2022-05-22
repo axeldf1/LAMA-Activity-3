@@ -2,7 +2,7 @@ import React, {Component, useEffect, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import {ListCards} from "./list";
+import {ListCards} from "../list/container/list";
 import {UserSimpleDisplay} from "../user/components/UserSimpleDisplay";
 import axios from "axios";
 
@@ -25,7 +25,7 @@ export const Buy=(props)=>{
     }
 
     useEffect(() => {
-        fetchCurrentUser();
+        // fetchCurrentUser();
 
     }, []);
 
@@ -37,7 +37,7 @@ export const Buy=(props)=>{
                     <Grid.Column>
 
                         <Segment>
-                            <ListCards></ListCards>
+                            <ListCards action='Buy'></ListCards>
                         </Segment>
 
                     </Grid.Column>
