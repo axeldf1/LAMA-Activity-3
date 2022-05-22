@@ -2,37 +2,38 @@ version: "3.3"
 
 services:
   gateway:
-    image: axeldf/gateway
+    image: axeldf/lama-activity-4:gateway_legacy
     restart: always
     ports:
       - "8080:8080"
+    network_mode: host
   authService:
-    image: axeldf/authservice
+    image: axeldf/lama-activity-4:authentication_legacy
     restart: always
     ports:
       - "8081:8081"
   cardService:
-    image: axeldf/cardservice
+    image: axeldf/lama-activity-4:card-service
     restart: always
     ports:
       - "8082:8082"
   playerService:
-    image: axeldf/playerservice
+    image: axeldf/lama-activity-4:player-service
     restart: always
     ports:
       - "8083:8083"
   marketService:
-    image: axeldf/marketservice
+    image: axeldf/lama-activity-4:market-service
     restart: always
     ports:
       - "8084:8084"
   roomService:
-    image: axeldf/gateway
+    image: axeldf/lama-activity-4:game-service
     restart: always
     ports:
       - "8085:8085"
   gameService:
-    image: axeldf/gateway
+    image: axeldf/lama-activity-4:room-service
     restart: always
     ports:
       - "8086:8086"

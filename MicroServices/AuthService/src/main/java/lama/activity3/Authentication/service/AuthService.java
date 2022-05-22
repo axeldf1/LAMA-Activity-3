@@ -35,16 +35,16 @@ public class AuthService {
         playerRepository.createPlayer(player.getUserId());
     }
 
-    public Optional<User> findByToken(String token) {
-        Optional<AuthUser> player = authRepository.findByToken(token);
-        if (player.isPresent()) {
-            AuthUser player1 = player.get();
-            User user = new User(player1.getUserName(), player1.getPassword(), true, true, true, true,
-                    AuthorityUtils.createAuthorityList("USER"));
-            return Optional.of(user);
-        }
-        return Optional.empty();
-    }
+//    public Optional<User> findByToken(String token) {
+//        Optional<AuthUser> player = authRepository.findByToken(token);
+//        if (player.isPresent()) {
+//            AuthUser player1 = player.get();
+//            User user = new User(player1.getUserName(), player1.getPassword(), true, true, true, true,
+//                    AuthorityUtils.createAuthorityList("USER"));
+//            return Optional.of(user);
+//        }
+//        return Optional.empty();
+//    }
 
     public AuthUser findById(Long id) {
         Optional<AuthUser> player = authRepository.findById(id);

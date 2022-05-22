@@ -14,7 +14,7 @@ public class RoomController {
     @Autowired
     private RoomService service;
 
-    RoomController(RoomRepository repository)
+    public RoomController(RoomRepository repository)
     {
         this.repository = repository;
     }
@@ -37,33 +37,33 @@ public class RoomController {
         service.CreateRoom(room);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{roomId}")
     public void JoinRoom(@PathVariable Long roomId, @RequestParam Long guestId)
     {
         service.JoinRoom(roomId, guestId);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{roomId}")
     public void DeleteRoom(@PathVariable Long roomId)
     {
         service.DeleteRoom(roomId);
     }
 
-    @PutMapping("/{id}")
-    public void HostChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
-    {
-        service.ChooseCard(roomId, cardId, "HOST");
-    }
+//    @PutMapping("/{roomId}")
+//    public void HostChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+//    {
+//        service.ChooseCard(roomId, cardId, "HOST");
+//    }
 
-    @PutMapping("/{id}")
-    public void GuestChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
-    {
-        service.ChooseCard(roomId, cardId, "GUEST");
-    }
+//    @PutMapping("/{id}")
+//    public void GuestChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+//    {
+//        service.ChooseCard(roomId, cardId, "GUEST");
+//    }
 
-    @PutMapping("/{id}")
-    public void GiveBet(@PathVariable Long roomId, @RequestParam Long winnerId)
-    {
-        service.GiveBet(roomId, winnerId);
-    }
+//    @PutMapping("/{id}")
+//    public void GiveBet(@PathVariable Long roomId, @RequestParam Long winnerId)
+//    {
+//        service.GiveBet(roomId, winnerId);
+//    }
 }

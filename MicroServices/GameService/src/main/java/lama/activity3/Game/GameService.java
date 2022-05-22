@@ -12,8 +12,8 @@ public class GameService {
 
     public Long CompareCards(Long hostCardId, Long guestCardId)
     {
-        Card hostCard = cardRepository.getById(hostCardId);
-        Card guestCard = cardRepository.getById(guestCardId);
+        Card hostCard = cardRepository.GetCard(hostCardId);
+        Card guestCard = cardRepository.GetCard(guestCardId);
 
         return (hostCard.getHp() / guestCard.getAttack() > guestCard.getHp() / hostCard.getAttack()) ? hostCardId : guestCardId;
     }

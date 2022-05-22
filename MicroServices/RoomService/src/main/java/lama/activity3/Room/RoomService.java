@@ -17,7 +17,7 @@ public class RoomService {
         Room roomToJoin = roomRepository.getById(roomId);
         roomToJoin.setGuestId(guestId);
 
-        PlayerDTO player = playerRepository.getById(guestId);
+        PlayerDTO player = playerRepository.GetPlayerById(guestId);
         player.setMoney(player.getMoney() - roomToJoin.getBet());
 
         roomRepository.save(roomToJoin);
@@ -25,7 +25,7 @@ public class RoomService {
     }
 
     public Room CreateRoom(Room room) {
-        PlayerDTO player = playerRepository.getById(room.getHostId());
+        PlayerDTO player = playerRepository.GetPlayerById(room.getHostId());
         player.setMoney(player.getMoney() - room.getBet());
         return roomRepository.save(room);
     }
@@ -56,7 +56,7 @@ public class RoomService {
     public void GiveBet(Long roomId, Long winnerId)
     {
         Room room = roomRepository.getById(roomId);
-        PlayerDTO player = playerRepository.getById(winnerId);
+        PlayerDTO player = playerRepository.GetPlayerById(winnerId);
         player.setMoney(player.getMoney() + room.getBet() * 2);
     }
 }
