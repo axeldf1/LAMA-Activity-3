@@ -10,8 +10,8 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class LoggingGlobalPreFilter implements GlobalFilter {
-
     final Logger logger = LoggerFactory.getLogger(LoggingGlobalPreFilter.class);
+
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {

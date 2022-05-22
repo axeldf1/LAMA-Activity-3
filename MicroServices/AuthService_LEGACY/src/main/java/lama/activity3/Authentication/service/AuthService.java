@@ -4,15 +4,14 @@ import lama.activity3.AuthDTO.AuthDTO;
 import lama.activity3.Authentication.model.AuthUser;
 import lama.activity3.Authentication.repository.AuthRepository;
 import lama.activity3.Authentication.repository.PlayerRepository;
-import lama.activity3.Authentication.security.JwtUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -20,18 +19,24 @@ public class AuthService {
     AuthRepository authRepository;
     @Autowired
     PlayerRepository playerRepository;
-    @Autowired
-    private JwtUtil jwtUtil;
 
-    public ResponseEntity<String> login(String userName, String password) {
-        if (authRepository.login(userName, password).isPresent())
-            return new ResponseEntity<String>("", HttpStatus.FORBIDDEN);
-        return new ResponseEntity<String>(jwtUtil.generateToken(userName), HttpStatus.OK);
+    public String login(String username, String password) {
+        Optional<AuthUser> player = authRepository.login(username, password);
+        if (player.isPresent()) {
+            String token = UUID.randomUUID().toString();
+            AuthUser custom = player.get();
+            custom.setToken(token);
+            authRepository.save(custom);
+            return token;
+        }
+
+        return StringUtils.EMPTY;
     }
 
     public void register(AuthDTO newPlayer) {
         AuthUser player = new AuthUser(newPlayer.getUserName(), newPlayer.getPassword());
         authRepository.save(player);
+        System.out.println(player);
         playerRepository.createPlayer(player.getUserId());
     }
 

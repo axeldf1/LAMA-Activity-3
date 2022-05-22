@@ -11,16 +11,16 @@ public class AuthUser {
     private Long userId;
     private String userName;
     private String password;
-//    private String token;
+    private String token;
 
     public AuthUser() {
     }
 
-//    public AuthUser(String userName, String password, String token) {
-//        this.userName = userName;
-//        this.password = password;
-//        this.token = token;
-//    }
+    public AuthUser(String userName, String password, String token) {
+        this.userName = userName;
+        this.password = password;
+        this.token = token;
+    }
 
     public AuthUser(String userName, String password) {
         this.userName = userName;
@@ -43,13 +43,13 @@ public class AuthUser {
         this.password = password;
     }
 
-//    public String getToken() {
-//        return token;
-//    }
-//
-//    public void setToken(String token) {
-//        this.token = token;
-//    }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getUserName() {
         return userName;
@@ -65,7 +65,7 @@ public class AuthUser {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-//                ", token='" + token + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }
