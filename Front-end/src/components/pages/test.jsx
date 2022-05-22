@@ -2,7 +2,6 @@ import React, {Component, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import ListCard from "../list/container/list";
 import axios from "axios";
 
 

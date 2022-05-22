@@ -15,9 +15,9 @@ class LoadDatabase {
     CommandLineRunner initDatabase(CardRepository cardRepository) {
 
         return args -> {
-            Card card1 = new Card("carte 1", "description 1", "imageUrl 1", "family 1", "affinity 1", 0, 0, 0, 0);
-            Card card2 = new Card("carte 2", "description 2", "imageUrl 2", "family 2", "affinity 2", 0, 0, 0, 0);
-            Card card3 = new Card("carte 3", "description 3", "imageUrl 3", "family 3", "affinity 2", 0, 0, 0, 0);
+            Card card1 = new Card("carte 1", "description 1", "imageUrl 1", "family 1", "affinity 1", 100, 50, 10, 5);
+            Card card2 = new Card("carte 2", "description 2", "imageUrl 2", "family 2", "affinity 2", 200, 25, 26, 60);
+            Card card3 = new Card("carte 3", "description 3", "imageUrl 3", "family 3", "affinity 2", 50, 50, 33, 50);
             Card card4 = new Card("carte 4", "description 4", "imageUrl 4", "family 3", "affinity 3", 0, 0, 0, 0);
             Card card5 = new Card("carte 5", "description 5", "imageUrl 5", "family 3", "affinity 1", 0, 0, 0, 0);
             Card card6 = new Card("carte 6", "description 6", "imageUrl 6", "family 1", "affinity 2", 0, 0, 0, 0);

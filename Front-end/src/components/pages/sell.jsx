@@ -2,19 +2,10 @@ import React, {Component, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import {ListCards} from "../list/container/list";
 import {UserSimpleDisplay} from "../user/components/UserSimpleDisplay";
+import {ListSellDisplay} from "../list/components/ListSellDisplay";
 
 export const Sell=(props)=>{
-    const [currentUser, setCurrentUser] = useState({
-        id: 12,
-        username: "John",
-        lastname: "Doe",
-        login: "jDoe",
-        pwd: "jdoepwd",
-        money: 500,
-        title: "Sell"
-    });
 
     return (
         <div>
@@ -24,7 +15,7 @@ export const Sell=(props)=>{
                     <Grid.Column>
 
                         <Segment>
-                            <ListCards action="Sell"></ListCards>
+                            <ListSellDisplay action="Sell"></ListSellDisplay>
                         </Segment>
 
                     </Grid.Column>

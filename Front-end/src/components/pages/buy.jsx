@@ -2,32 +2,14 @@ import React, {Component, useEffect, useState} from "react";
 import {Card, Grid, Icon, Image, Segment} from 'semantic-ui-react';
 import {Link} from "react-router-dom";
 import {Header} from "./header";
-import {ListCards} from "../list/container/list";
 import {UserSimpleDisplay} from "../user/components/UserSimpleDisplay";
 import axios from "axios";
+import {ListBuyDisplay} from "../list/components/ListBuyDisplay";
+import {useSelector} from "react-redux";
 
 export const Buy=(props)=>{
-    const [currentUser, setCurrentUser] = useState({
-        id: 12,
-        username: "John",
-        lastname: "Doe",
-        login: "jDoe",
-        pwd: "jdoepwd",
-        money: 500,
-        title: "Buy"
-    });
+    let current_user = useSelector(state => state.userReducer.user);
 
-    const fetchCurrentUser = async ()=>{
-        const {data} = await axios.get('http://localhost:8080/users/3')
-        const currentUser = data;
-        setCurrentUser(currentUser)
-        console.log(currentUser);
-    }
-
-    useEffect(() => {
-        // fetchCurrentUser();
-
-    }, []);
 
     return (
         <div>
@@ -37,7 +19,7 @@ export const Buy=(props)=>{
                     <Grid.Column>
 
                         <Segment>
-                            <ListCards action='Buy'></ListCards>
+                            <ListBuyDisplay action='Buy'></ListBuyDisplay>
                         </Segment>
 
                     </Grid.Column>
