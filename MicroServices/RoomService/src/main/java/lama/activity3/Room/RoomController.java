@@ -25,12 +25,6 @@ public class RoomController {
         return repository.findAll();
     }
 
-    @PostMapping("")
-            Room newRoom(@RequestBody Room newRoom)
-    {
-        return repository.save(newRoom);
-    }
-
     @GetMapping("/{id}")
     Room one(@PathVariable Long id)
     {
@@ -38,15 +32,38 @@ public class RoomController {
     }
 
     @PostMapping("/{id}")
-    public Room CreateRoom(@RequestBody Room room)
+    public void CreateRoom(@RequestBody Room room)
     {
-        return repository.save(room);
+        service.CreateRoom(room);
     }
 
-    @GetMapping("/{id]")
-    public String JoinRoom(@RequestBody Room room, @RequestBody PlayerDTO guest)
+    @PutMapping("/{id}")
+    public void JoinRoom(@PathVariable Long roomId, @RequestParam Long guestId)
     {
-        service.JoinRoom(room, guest);
-        return ("Player has joined Room " + room.getId());
+        service.JoinRoom(roomId, guestId);
+    }
+
+    @DeleteMapping("/{id}")
+    public void DeleteRoom(@PathVariable Long roomId)
+    {
+        service.DeleteRoom(roomId);
+    }
+
+    @PutMapping("/{id}")
+    public void HostChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+    {
+        service.ChooseCard(roomId, cardId, "HOST");
+    }
+
+    @PutMapping("/{id}")
+    public void GuestChooseCard(@PathVariable Long roomId, @RequestParam Long cardId)
+    {
+        service.ChooseCard(roomId, cardId, "GUEST");
+    }
+
+    @PutMapping("/{id}")
+    public void GiveBet(@PathVariable Long roomId, @RequestParam Long winnerId)
+    {
+        service.GiveBet(roomId, winnerId);
     }
 }

@@ -11,7 +11,9 @@ public class Room {
     @GeneratedValue
     private Long id;
     private Long hostId;
+    private Long hostCardId;
     private Long guestId;
+    private Long guestCardId;
     private int bet;
 
     public Room() {
@@ -22,6 +24,22 @@ public class Room {
         this.bet = bet;
         this.hostId = hostId;
         this.guestId = null;
+    }
+
+    public Long getHostCardId() {
+        return hostCardId;
+    }
+
+    public void setHostCardId(Long hostCardId) {
+        this.hostCardId = hostCardId;
+    }
+
+    public Long getGuestCardId() {
+        return guestCardId;
+    }
+
+    public void setGuestCardId(Long guestCardId) {
+        this.guestCardId = guestCardId;
     }
 
     public Long getId() {
